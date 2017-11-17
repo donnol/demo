@@ -1,0 +1,9 @@
+digraph {
+    role
+    user
+    entity
+    op
+
+    user -> role
+    role -> entity -> op
+}

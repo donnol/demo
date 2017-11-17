@@ -1,0 +1,7 @@
+digraph postgresys {
+    node [shape="record"]
+
+    subgraph cluster_cm {
+        label="连接管理系统"
+    }
+}

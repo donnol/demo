@@ -1,0 +1,20 @@
+graph isolation {
+    subgraph cluster_dirty_writes {
+        label="Dirty Writes"
+
+        node [shape="plaintext"]
+
+        // Middle
+        // T1
+        // T2
+        // commit1
+        // commit2
+        line1 [label="---------------"]
+        line2 [label="-----a---a-----"]
+        line3 [label="---------------"]
+
+        // T1 -- commit1
+        // T2 -- commit2
+    }
+
+}

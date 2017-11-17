@@ -1,0 +1,13 @@
+digraph one {
+	fontname = "Microsoft YaHei"
+	label="浏览器"
+	style="filled"
+
+	node [color="#adfadf", style="filled"]
+	edge []
+
+	Client [label="客户端"]
+	Server [label="服务器"]
+
+	Client -> Server [style="solid" color="#aaafff"]
+}

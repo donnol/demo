@@ -1,0 +1,6 @@
+digraph release {
+    make [label="make"]
+    release [label="release"]
+
+    make -> release
+}

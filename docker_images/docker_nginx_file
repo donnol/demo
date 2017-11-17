@@ -1,0 +1,11 @@
+FROM nginx
+RUN echo '<h1>Hello, Docker!</h1>' \
+    && echo '<h1>Today is fine!</h2>'
+# 以前台形式执行
+CMD ["nginx", "-g", "daemon off;"]
+# 可以接受参数
+ENTRYPOINT [ "curl", "-s", "http://ip.cn" ]
+EXPOSE 6379
+ENV GOPATH=/home/jd/go
+HEALTHCHECK --interval=5s --timeount=3s \
+ CMD curl -fs http://localhost/ || exit 1

@@ -1,0 +1,4 @@
+digraph home {
+    workshop [label="workshop"]
+    playground [label="playground"]
+}

@@ -1,0 +1,35 @@
+digraph array {
+    label="array"
+    color="#aaccee"
+    shape="record"
+
+    node [shape="plaintext"]
+
+    one [label=<
+      <table border="0" cellborder="1" cellspacing="0" align="left">
+      <tr>
+      <td port="a">a                                      </td>
+      <td port="b">b                                      </td>
+      <td port="c">c                    </td>
+      <td port="d">d     </td>
+      <td port="e">e     </td>
+      </tr>
+      </table>
+  > width=1 height=.5]
+    
+    node [shape="record"]
+    two [label="{<1>1 | <2>2 | <3>3 | <4>4 | <5>5}", height=.5]
+
+    two:2 -> one:a [color="#ebbbbb"]
+    two:3 -> one:b [color="#afafaf"]
+    two:4 -> one:c [color="#fafaf"]
+    two:5 -> one:d [color="#eebbdd"]
+    two:1 -> one:e [color="#fdabc"]
+
+    subgraph cluster_a {
+        label="注意"
+        node [shape="record"]
+
+        three [label="warning"]
+    }
+}

@@ -1,0 +1,27 @@
+digraph query {
+    Postgres [label="Postgres"]
+    analyze [label="analyze"]
+    function [label="function"]
+    tree [label="tree"]
+    rewrite [label="rewrite"]
+    new_tree [label="new_tree"]
+    best_routine [label="best_routine"]
+    execute [label="execute"]
+
+    Postgres -> analyze
+    analyze -> function
+    analyze -> tree
+    tree -> rewrite
+    rewrite -> new_tree
+    new_tree -> best_routine
+    best_routine -> execute
+
+    subgraph cluster_analyze{
+        SQL [label="SQL"]
+        a_tree [label="a_tree"]
+        q_tree [label="q_tree"]
+
+        SQL -> a_tree [label="Lex, Yacc"]
+        a_tree -> q_tree [label="语义分析"]
+    }
+}

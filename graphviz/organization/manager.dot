@@ -1,0 +1,28 @@
+digraph organization {
+
+    node [shape="record"]
+
+    button [label="<a> 启用|<b> 禁用|<c> 删除|<d> 搜索|<e> 刷新"]
+
+    node [shape="plaintext"]
+
+    content [label=<
+        <table border="0" cellborder="1" cellspacing="0" align="center">
+        <tr>
+        <td>编号</td>
+        <td>组织号</td>
+        <td>创建人</td>
+        <td>到期时间</td>
+        <td>成员人数</td>
+        <td>分子容量</td>
+        <td>存储容量</td>
+        <td>状态</td>
+        <td>禁用时间</td>
+        <td>禁用备注</td>
+        <td>操作</td>
+        </tr>
+        </table>
+    >]
+
+    button -> content [color="#ffffff"]
+}

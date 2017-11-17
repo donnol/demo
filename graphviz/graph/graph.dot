@@ -1,0 +1,19 @@
+graph undirected {
+    V1
+    V2
+    V3
+
+    V1 -- V2
+    V2 -- V3
+    V3 -- V1
+}
+
+digraph directed {
+    V1
+    V2
+    V3
+
+    V1 -> V2
+    V2 -> V3
+    V3 -> V1
+}

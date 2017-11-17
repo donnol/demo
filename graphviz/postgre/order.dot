@@ -1,0 +1,15 @@
+digraph order {
+    FROM
+    ON
+    OUTER
+    WHERE
+    GROUP_BY
+    CUBE_OR_ROLLUP
+    HAVING
+    SELECT
+    DISTINCT
+    ORDER_BY
+    TOP [label="TOP(LIMIT)"]
+
+    FROM -> ON -> OUTER -> WHERE -> GROUP_BY -> CUBE_OR_ROLLUP -> HAVING -> SELECT -> DISTINCT -> ORDER_BY -> TOP
+}

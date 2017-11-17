@@ -1,0 +1,3 @@
+digraph postgrecall {
+    node [shape="circle"]
+}

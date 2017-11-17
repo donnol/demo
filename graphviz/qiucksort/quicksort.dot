@@ -1,0 +1,21 @@
+digraph quicksort {
+
+    node [shape="plaintext"]
+
+    pivot1 [label="pivot"]
+    pivot2 [label="pivot"]
+    
+    storeIndex1 [label="storeIndex"]
+    storeIndex2 [label="storeIndex"]
+
+    node [shape="record"]
+
+    step1 [label=" <head>3 | 7 | 8 | <pivot>5 | 2 | 1 | 9 | 5 | 4 "]
+    step2 [label=" 3 | <head>7 | 8 | 4 | 2 | 1 | 9 | 5 | <pivot>5 "]
+
+    pivot1 -> step1:pivot
+    pivot2 -> step2:pivot
+
+    storeIndex1 -> step1:head
+    storeIndex2 -> step2:head
+}

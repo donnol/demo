@@ -1,0 +1,13 @@
+digraph rbac {
+    userA [label="用户甲"]
+    userB [label="用户乙"]
+    roleA [label="角色A"]
+    roleB [label="角色B"]
+    op1 [label="功能1"]
+    op2 [label="功能2"]
+
+    userA -> roleA
+    roleA -> op1
+    userB -> roleB
+    roleB -> op2
+}

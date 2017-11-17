@@ -1,0 +1,19 @@
+digraph rfrbac {
+    userA [label="用户A"]
+    roleA [label="角色A"]
+    entity1 [label="资源1"]
+    op1 [label="功能1"]
+
+    userA -> roleA
+    roleA -> entity1
+    roleA -> op1
+
+    userB [label="用户B"]
+    roleB [label="角色B"]
+    entity2 [label="资源2"]
+    op2 [label="功能2"]
+
+    userB -> roleB
+    roleB -> entity2
+    roleB -> op2
+}

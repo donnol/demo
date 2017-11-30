@@ -1,0 +1,805 @@
+<html>
+
+<head>
+    <title>gcvis - go run main.go</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.selection.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.stack.min.js"></script>
+
+    <script type="text/javascript">
+        (function () {
+            var datagraph_data = [{
+                    label: "gc.heapinuse",
+                    data: [
+                        [0.121, 5],
+                        [0.168, 5],
+                        [0.005, 5],
+                        [0.001, 5],
+                        [0.009, 8],
+                        [0.023, 14],
+                        [0.051, 24],
+                        [0.016, 5],
+                        [0.026, 8],
+                        [0.045, 15],
+                        [0.079, 29],
+                        [0.149, 56],
+                        [0.277, 110],
+                        [0.53, 215],
+                        [0.99, 390],
+                        [1.375, 390],
+                        [1.749, 390],
+                        [2.148, 390],
+                        [2.541, 390],
+                        [2.856, 323],
+                        [3.238, 390],
+                        [3.623, 390],
+                        [3.998, 391],
+                        [4.394, 390],
+                        [4.566, 163],
+                        [4.878, 319],
+                        [5.257, 390],
+                        [5.644, 390],
+                        [6.021, 390],
+                        [6.413, 390],
+                        [6.587, 154],
+                        [6.895, 301],
+                        [7.321, 390],
+                        [7.706, 390],
+                        [8.092, 390],
+                        [8.486, 391],
+                        [8.618, 120],
+                        [8.854, 234],
+                        [9.235, 390]
+                    ]
+                },
+                {
+                    label: "scvg.inuse",
+                    data: []
+                },
+                {
+                    label: "scvg.idle",
+                    data: []
+                },
+                {
+                    label: "scvg.sys",
+                    data: []
+                },
+                {
+                    label: "scvg.released",
+                    data: []
+                },
+                {
+                    label: "scvg.consumed",
+                    data: []
+                }
+            ];
+
+            var datagraph_options = {
+                legend: {
+                    position: "nw",
+                    noColumns: 2,
+                    backgroundOpacity: 0.2
+                },
+                yaxis: {
+                    tickFormatter: function (val) {
+                        return val + "MB";
+                    }
+                },
+                xaxis: {
+                    tickFormatter: function (val) {
+                        return val + "s";
+                    }
+                },
+                selection: {
+                    mode: "x"
+                },
+            };
+
+            var clockgraph_data = [{
+                    label: "STW sweep clock",
+                    data: [
+                        [0.121, 0.5],
+                        [0.168, 0.01],
+                        [0.005, 0.17],
+                        [0.001, 0.33],
+                        [0.009, 0.1],
+                        [0.023, 0.011],
+                        [0.051, 0.01],
+                        [0.016, 0.2],
+                        [0.026, 0.12],
+                        [0.045, 0.008],
+                        [0.079, 0.009],
+                        [0.149, 0.009],
+                        [0.277, 0.009],
+                        [0.53, 0.01],
+                        [0.99, 0.011],
+                        [1.375, 0.01],
+                        [1.749, 0.01],
+                        [2.148, 0.01],
+                        [2.541, 0.013],
+                        [2.856, 0.014],
+                        [3.238, 0.013],
+                        [3.623, 0.012],
+                        [3.998, 0.011],
+                        [4.394, 0.014],
+                        [4.566, 0.013],
+                        [4.878, 0.015],
+                        [5.257, 0.011],
+                        [5.644, 0.012],
+                        [6.021, 0.013],
+                        [6.413, 0.014],
+                        [6.587, 0.016],
+                        [6.895, 0.027],
+                        [7.321, 0.012],
+                        [7.706, 0.012],
+                        [8.092, 0.012],
+                        [8.486, 0.013],
+                        [8.618, 0.013],
+                        [8.854, 0.013],
+                        [9.235, 0.012]
+                    ]
+                },
+                {
+                    label: "con mas clock",
+                    data: [
+                        [0.121, 0.34],
+                        [0.168, 0.26],
+                        [0.005, 1.9],
+                        [0.001, 2.1],
+                        [0.009, 2.4],
+                        [0.023, 3.9],
+                        [0.051, 3.6],
+                        [0.016, 0.74],
+                        [0.026, 0.73],
+                        [0.045, 0.91],
+                        [0.079, 1.1],
+                        [0.149, 1.4],
+                        [0.277, 2.2],
+                        [0.53, 3.5],
+                        [0.99, 3.7],
+                        [1.375, 4],
+                        [1.749, 4.3],
+                        [2.148, 5.8],
+                        [2.541, 3.3],
+                        [2.856, 4.1],
+                        [3.238, 4.1],
+                        [3.623, 4.6],
+                        [3.998, 4.2],
+                        [4.394, 2.9],
+                        [4.566, 3.7],
+                        [4.878, 4.6],
+                        [5.257, 6.5],
+                        [5.644, 4.6],
+                        [6.021, 4.7],
+                        [6.413, 2.8],
+                        [6.587, 4.4],
+                        [6.895, 6],
+                        [7.321, 6],
+                        [7.706, 5.1],
+                        [8.092, 5],
+                        [8.486, 3],
+                        [8.618, 3.3],
+                        [8.854, 4.7],
+                        [9.235, 5.1]
+                    ]
+                },
+                {
+                    label: "STW mark clock",
+                    data: [
+                        [0.121, 0.076],
+                        [0.168, 0.028],
+                        [0.005, 0.071],
+                        [0.001, 0.028],
+                        [0.009, 0.037],
+                        [0.023, 0.11],
+                        [0.051, 0.032],
+                        [0.016, 0.078],
+                        [0.026, 0.65],
+                        [0.045, 0.1],
+                        [0.079, 0.083],
+                        [0.149, 0.11],
+                        [0.277, 0.083],
+                        [0.53, 0.1],
+                        [0.99, 0.083],
+                        [1.375, 0.083],
+                        [1.749, 0.12],
+                        [2.148, 0.056],
+                        [2.541, 0.091],
+                        [2.856, 0.1],
+                        [3.238, 0.085],
+                        [3.623, 0.51],
+                        [3.998, 0.092],
+                        [4.394, 0.11],
+                        [4.566, 0.08],
+                        [4.878, 0.1],
+                        [5.257, 0.099],
+                        [5.644, 0.053],
+                        [6.021, 0.12],
+                        [6.413, 0.036],
+                        [6.587, 0.08],
+                        [6.895, 0.049],
+                        [7.321, 0.031],
+                        [7.706, 0.11],
+                        [8.092, 0.094],
+                        [8.486, 0.054],
+                        [8.618, 0.099],
+                        [8.854, 0.11],
+                        [9.235, 0.093]
+                    ]
+                },
+            ];
+            var cpugraph_data = [{
+                    label: "STW sweep cpu",
+                    data: [
+                        [0.121, 0.5],
+                        [0.168, 0.08],
+                        [0.005, 0.51],
+                        [0.001, 1],
+                        [0.009, 0.76],
+                        [0.023, 0.088],
+                        [0.051, 0.08],
+                        [0.016, 0.62],
+                        [0.026, 0.88],
+                        [0.045, 0.064],
+                        [0.079, 0.072],
+                        [0.149, 0.072],
+                        [0.277, 0.072],
+                        [0.53, 0.08],
+                        [0.99, 0.088],
+                        [1.375, 0.08],
+                        [1.749, 0.08],
+                        [2.148, 0.08],
+                        [2.541, 0.1],
+                        [2.856, 0.11],
+                        [3.238, 0.1],
+                        [3.623, 0.096],
+                        [3.998, 0.088],
+                        [4.394, 0.11],
+                        [4.566, 0.1],
+                        [4.878, 0.12],
+                        [5.257, 0.088],
+                        [5.644, 0.096],
+                        [6.021, 0.1],
+                        [6.413, 0.11],
+                        [6.587, 0.12],
+                        [6.895, 0.21],
+                        [7.321, 0.096],
+                        [7.706, 0.096],
+                        [8.092, 0.096],
+                        [8.486, 0.1],
+                        [8.618, 0.1],
+                        [8.854, 0.1],
+                        [9.235, 0.096]
+                    ]
+                },
+                {
+                    label: "con mas assist cpu",
+                    data: [
+                        [0.121, 0],
+                        [0.168, 0.076],
+                        [0.005, 0.1],
+                        [0.001, 0],
+                        [0.009, 0.21],
+                        [0.023, 0.19],
+                        [0.051, 0.062],
+                        [0.016, 0.013],
+                        [0.026, 0.007],
+                        [0.045, 0.88],
+                        [0.079, 1],
+                        [0.149, 1.4],
+                        [0.277, 2.1],
+                        [0.53, 3.5],
+                        [0.99, 3.6],
+                        [1.375, 4],
+                        [1.749, 4.3],
+                        [2.148, 5.7],
+                        [2.541, 3.3],
+                        [2.856, 4.1],
+                        [3.238, 4.1],
+                        [3.623, 4.5],
+                        [3.998, 4.2],
+                        [4.394, 2.9],
+                        [4.566, 3.6],
+                        [4.878, 4.6],
+                        [5.257, 6.5],
+                        [5.644, 4.5],
+                        [6.021, 4.7],
+                        [6.413, 2.8],
+                        [6.587, 4.3],
+                        [6.895, 6],
+                        [7.321, 6],
+                        [7.706, 5],
+                        [8.092, 0.048],
+                        [8.486, 3],
+                        [8.618, 0.05],
+                        [8.854, 4.7],
+                        [9.235, 5]
+                    ]
+                },
+                {
+                    label: "con mas bg cpu",
+                    data: [
+                        [0.121, 0.26],
+                        [0.168, 0.3],
+                        [0.005, 3.3],
+                        [0.001, 3.4],
+                        [0.009, 1.7],
+                        [0.023, 6.9],
+                        [0.051, 6.8],
+                        [0.016, 0.005],
+                        [0.026, 0.033],
+                        [0.045, 0.012],
+                        [0.079, 0.049],
+                        [0.149, 0.1],
+                        [0.277, 0.002],
+                        [0.53, 3.6],
+                        [0.99, 0.9],
+                        [1.375, 4.4],
+                        [1.749, 4.7],
+                        [2.148, 0.46],
+                        [2.541, 0.016],
+                        [2.856, 0.003],
+                        [3.238, 1],
+                        [3.623, 0.015],
+                        [3.998, 0.72],
+                        [4.394, 1],
+                        [4.566, 0.28],
+                        [4.878, 0.023],
+                        [5.257, 0.5],
+                        [5.644, 0.005],
+                        [6.021, 0.63],
+                        [6.413, 3.3],
+                        [6.587, 0.32],
+                        [6.895, 0.86],
+                        [7.321, 1],
+                        [7.706, 0.6],
+                        [8.092, 0.58],
+                        [8.486, 0.016],
+                        [8.618, 0.003],
+                        [8.854, 0.015],
+                        [9.235, 0.016]
+                    ]
+                },
+                {
+                    label: "con mas idle cpu",
+                    data: [
+                        [0.121, 0.4],
+                        [0.168, 0.57],
+                        [0.005, 1.2],
+                        [0.001, 0.17],
+                        [0.009, 1.5],
+                        [0.023, 0.17],
+                        [0.051, 7.7],
+                        [0.016, 0.79],
+                        [0.026, 0.83],
+                        [0.045, 0.88],
+                        [0.079, 1.1],
+                        [0.149, 1.4],
+                        [0.277, 2.6],
+                        [0.53, 1.1],
+                        [0.99, 5],
+                        [1.375, 1.8],
+                        [1.749, 2.1],
+                        [2.148, 7.6],
+                        [2.541, 5.5],
+                        [2.856, 2.3],
+                        [3.238, 5.6],
+                        [3.623, 6.8],
+                        [3.998, 2.1],
+                        [4.394, 4.1],
+                        [4.566, 4],
+                        [4.878, 6.9],
+                        [5.257, 8.4],
+                        [5.644, 7.1],
+                        [6.021, 6.7],
+                        [6.413, 1.9],
+                        [6.587, 5.1],
+                        [6.895, 7.2],
+                        [7.321, 7.4],
+                        [7.706, 6.7],
+                        [8.092, 7.2],
+                        [8.486, 6.2],
+                        [8.618, 4.3],
+                        [8.854, 6.5],
+                        [9.235, 7.8]
+                    ]
+                },
+                {
+                    label: "STW mark cpu",
+                    data: [
+                        [0.121, 0.076],
+                        [0.168, 0.22],
+                        [0.005, 0.21],
+                        [0.001, 0.084],
+                        [0.009, 0.25],
+                        [0.023, 0.88],
+                        [0.051, 0.25],
+                        [0.016, 0.23],
+                        [0.026, 4.5],
+                        [0.045, 0.84],
+                        [0.079, 0.66],
+                        [0.149, 0.88],
+                        [0.277, 0.66],
+                        [0.53, 0.8],
+                        [0.99, 0.66],
+                        [1.375, 0.66],
+                        [1.749, 1],
+                        [2.148, 0.44],
+                        [2.541, 0.72],
+                        [2.856, 0.85],
+                        [3.238, 0.68],
+                        [3.623, 4.1],
+                        [3.998, 0.73],
+                        [4.394, 0.93],
+                        [4.566, 0.64],
+                        [4.878, 0.86],
+                        [5.257, 0.79],
+                        [5.644, 0.42],
+                        [6.021, 1],
+                        [6.413, 0.28],
+                        [6.587, 0.64],
+                        [6.895, 0.39],
+                        [7.321, 0.24],
+                        [7.706, 0.93],
+                        [8.092, 0.75],
+                        [8.486, 0.43],
+                        [8.618, 0.79],
+                        [8.854, 0.88],
+                        [9.235, 0.74]
+                    ]
+                },
+            ];
+
+            var timingsgraph_options = {
+                legend: {
+                    position: "nw",
+                    noColumns: 2,
+                    backgroundOpacity: 0.2
+                },
+                yaxis: {
+                    tickFormatter: function (val) {
+                        return val + "ms";
+                    }
+                },
+                xaxis: {
+                    tickFormatter: function (val) {
+                        return val + "s";
+                    }
+                },
+                selection: {
+                    mode: "x"
+                },
+                series: {
+                    stack: 0,
+                    lines: {
+                        show: true,
+                        fill: true,
+                        lineWidth: 0,
+                    },
+                },
+            };
+
+            $(document).ready(function () {
+                var datagraph = $.plot("#datagraph", datagraph_data, datagraph_options);
+                var clockgraph = $.plot("#clockgraph", clockgraph_data, timingsgraph_options);
+                var cpugraph = $.plot("#cpugraph", cpugraph_data, timingsgraph_options);
+
+                var overview = $.plot("#overview", {}, {
+                    legend: {
+                        show: false
+                    },
+                    series: {
+                        lines: {
+                            show: true,
+                            lineWidth: 1
+                        },
+                        shadowSize: 0
+                    },
+                    xaxis: {
+                        ticks: [],
+                        min: 0,
+                        autoscaleMargin: 0.1
+                    },
+                    yaxis: {
+                        ticks: [],
+                        min: 0,
+                        autoscaleMargin: 0.1
+                    },
+                    selection: {
+                        mode: "x"
+                    }
+                });
+
+
+                $("#datagraph").bind("plotselected", function (event, ranges) {
+
+
+                    $.each(datagraph.getXAxes(), function (_, axis) {
+                        var opts = axis.options;
+                        opts.min = ranges.xaxis.from;
+                        opts.max = ranges.xaxis.to;
+                    });
+                    datagraph.setupGrid();
+                    datagraph.draw();
+                    datagraph.clearSelection();
+
+
+                    overview.setSelection(ranges, true);
+                    clockgraph.setSelection(ranges, true);
+                    cpugraph.setSelection(ranges, true);
+                });
+
+                $("#clockgraph").bind("plotselected", function (event, ranges) {
+
+
+                    $.each(clockgraph.getXAxes(), function (_, axis) {
+                        var opts = axis.options;
+                        opts.min = ranges.xaxis.from;
+                        opts.max = ranges.xaxis.to;
+                    });
+                    clockgraph.setupGrid();
+                    clockgraph.draw();
+                    clockgraph.clearSelection();
+
+
+
+                    overview.setSelection(ranges, true);
+                    datagraph.setSelection(ranges, true);
+                    cpugraph.setSelection(ranges, true);
+                });
+
+                $("#cpugraph").bind("plotselected", function (event, ranges) {
+
+
+                    $.each(cpugraph.getXAxes(), function (_, axis) {
+                        var opts = axis.options;
+                        opts.min = ranges.xaxis.from;
+                        opts.max = ranges.xaxis.to;
+                    });
+                    cpugraph.setupGrid();
+                    cpugraph.draw();
+                    cpugraph.clearSelection();
+
+
+
+                    overview.setSelection(ranges, true);
+                    datagraph.setSelection(ranges, true);
+                    clockraph.setSelection(ranges, true);
+                });
+
+                $("#overview").bind("plotselected", function (event, ranges) {
+                    datagraph.setSelection(ranges);
+                    clockgraph.setSelection(ranges);
+                    cpugraph.setSelection(ranges);
+                });
+
+
+                pullAndRedraw();
+
+                function pullAndRedraw() {
+                    $.get(window.location.href + 'graph.json', function (graphData) {
+                        var datagraph_data = [{
+                                label: "gc.heapinuse",
+                                data: graphData.HeapUse
+                            },
+                            {
+                                label: "scvg.inuse",
+                                data: graphData.ScvgInuse
+                            },
+                            {
+                                label: "scvg.idle",
+                                data: graphData.ScvgIdle
+                            },
+                            {
+                                label: "scvg.sys",
+                                data: graphData.ScvgSys
+                            },
+                            {
+                                label: "scvg.released",
+                                data: graphData.ScvgReleased
+                            },
+                            {
+                                label: "scvg.consumed",
+                                data: graphData.ScvgConsumed
+                            }
+                        ];
+                        var clockgraph_data = [{
+                                label: "STW sweep clock",
+                                data: graphData.STWSclock
+                            },
+                            {
+                                label: "con mas clock",
+                                data: graphData.MASclock
+                            },
+                            {
+                                label: "STW mark clock",
+                                data: graphData.STWMclock
+                            },
+                        ];
+                        var cpugraph_data = [{
+                                label: "STW sweep cpu",
+                                data: graphData.STWScpu
+                            },
+                            {
+                                label: "con mas assist cpu",
+                                data: graphData.MASAssistcpu
+                            },
+                            {
+                                label: "con mas bg cpu",
+                                data: graphData.MASBGcpu
+                            },
+                            {
+                                label: "con mas idle cpu",
+                                data: graphData.MASIdlecpu
+                            },
+                            {
+                                label: "STW mark cpu",
+                                data: graphData.STWMcpu
+                            },
+                        ];
+
+                        datagraph.setData(datagraph_data);
+                        datagraph.setupGrid();
+                        datagraph.draw();
+
+                        clockgraph.setData(clockgraph_data);
+                        clockgraph.setupGrid();
+                        clockgraph.draw();
+
+                        cpugraph.setData(cpugraph_data);
+                        cpugraph.setupGrid();
+                        cpugraph.draw();
+
+                        overview.setData(datagraph_data);
+                        overview.setupGrid();
+                        overview.draw();
+
+                        setTimeout(pullAndRedraw, 1000);
+                    })
+                }
+            });
+        })();
+    </script>
+    <style>
+        #content {
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        #export {
+            float: right;
+        }
+
+        dt {
+            float: left;
+            font-weight: bold;
+            width: 160px;
+        }
+
+        dd {
+            margin-left: 160px;
+        }
+
+        .graph-container {
+            box-sizing: border-box;
+            width: 1200px;
+            height: 340px;
+            padding: 20px 15px 15px 15px;
+            margin: 15px auto 30px auto;
+            border: 1px solid #ddd;
+            background: #fff;
+            background: linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            -o-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -ms-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .small-graph-container {
+            box-sizing: border-box;
+            width: 1200px;
+            height: 220px;
+            padding: 20px 15px 15px 15px;
+            margin: 15px auto 30px auto;
+            border: 1px solid #ddd;
+            background: #fff;
+            background: linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            -o-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -ms-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-container {
+            box-sizing: border-box;
+            width: 1200px;
+            height: 450px;
+            padding: 2px 1px 1px 1px;
+            margin: 15px auto 30px auto;
+            border: 0px;
+            background: #fff;
+            background: linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+            background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            -o-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -ms-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .demo-placeholder {
+            width: 100%;
+            height: 100%;
+            font-size: 14px;
+            line-height: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <pre>go run main.go</pre>
+    <div id="export">
+        <a href="/graph.json">json</a>
+    </div>
+    <div id="content">
+
+        <div class="graph-container">
+            <div id="datagraph" class="demo-placeholder"></div>
+        </div>
+
+        <div class="small-graph-container">
+            <div id="clockgraph" class="demo-placeholder"></div>
+        </div>
+
+        <div class="small-graph-container">
+            <div id="cpugraph" class="demo-placeholder"></div>
+        </div>
+
+        <div class="legend-container" style="height:60px;">
+            <div id="overview" class="demo-placeholder"></div>
+        </div>
+
+        <p>The smaller plot is linked to the main plot, so it acts as an overview. Try dragging a selection on either plot,
+            and watch the behavior of the other.</p>
+
+    </div>
+
+    <pre><b>Legend</b>
+    <dl>
+    
+    <dt>gc.heapinuse  </dt><dd> heap in use after gc</dd>
+    <dt>scvg.inuse    </dt><dd> virtual memory considered in use by the scavenger</dd>
+    <dt>scvg.idle     </dt><dd> virtual memory considered unused by the scavenger</dd>
+    <dt>scvg.sys      </dt><dd> virtual memory requested from the operating system (should aproximate VSS)</dd>
+    <dt>scvg.released </dt><dd> virtual memory returned to the operating system by the scavenger</dd>
+    <dt>scvg.consumed </dt><dd> virtual memory in use (should roughly match process RSS)</dd>
+    
+    <dt>STW sweep clock   </dt><dd>stop-the-world sweep clock time</dd>
+    <dt>con mas clock     </dt><dd>concurrent mark and scan clock time</dd>
+    <dt>STW mark clock    </dt><dd>stop-the-world mark clock time</dd>
+    <dt>STW sweep cpu     </dt><dd>stop-the-world sweep cpu time</dd>
+    <dt>con mas assist cpu</dt><dd>concurrent mark and scan - assist cpu time (GC performed in line with allocation)</dd>
+    <dt>con mas bg cpu    </dt><dd>concurrent mark and scan - background GC cpu time</dd>
+    <dt>con mas idle cpu  </dt><dd>concurrent mark and scan - idle GC cpu time</dd>
+    <dt>STW mark cpu      </dt><dd>stop-the-world mark cpu time</dd>
+    </dl>
+    
+    </pre>
+</body>
+
+</html>

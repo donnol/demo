@@ -40,6 +40,13 @@ func main() {
 	slice[0] = 20
 	format(&array, &array[0], len(array), cap(array), array)
 	format(&slice, &slice[0], len(slice), cap(slice), slice)
+
+	// non-constant array bound l
+	// var l = 8
+	// array1 := [l]int{}
+	// for i := 0; i < l; i++ {
+	// 	array1[i] = i
+	// }
 }
 
 func format(args ...interface{}) {

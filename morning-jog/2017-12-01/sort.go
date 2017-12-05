@@ -1,6 +1,7 @@
 package p20171201
 
 // Sort 排序
+// 排序过程可视化 https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
 func Sort(s []int) []int {
 	l, r := 0, len(s)-1
 	quicksort(s, l, r)
@@ -15,9 +16,9 @@ func Sort(s []int) []int {
 // 		QuickSort(Q, q+1, r)
 func quicksort(s []int, l, r int) {
 	if r > l {
-		p := partition(s, l, r)
-		quicksort(s, l, p-1)
-		quicksort(s, p+1, r)
+		p := partition(s, l, r) // 基准的位置确定了
+		quicksort(s, l, p-1)    // 基准左边的元素继续排序
+		quicksort(s, p+1, r)    // 右边的也一样
 	}
 }
 
@@ -32,15 +33,15 @@ func quicksort(s []int, l, r int) {
 // 	exchange A[i+1]<->A[r]
 // 	return i+1
 func partition(s []int, l, r int) int {
-	pivot := s[r]
-	i := l - 1
-	for j := l; j <= r-1; j++ {
-		if s[j] <= pivot {
+	pivot := s[r]               // 最后的元素作为基准
+	i := l - 1                  // 小于基准的元素索引
+	for j := l; j <= r-1; j++ { // 从左到右遍历 除基准外的元素
+		if s[j] <= pivot { // 小于基准的元素
 			i++
-			s[j], s[i] = s[i], s[j]
+			s[j], s[i] = s[i], s[j] // 将元素交换到左边的位置
 		}
 	}
-	s[i+1], s[r] = s[r], s[i+1]
+	s[i+1], s[r] = s[r], s[i+1] // 将基准放到合适的位置
 	return i + 1
 }
 

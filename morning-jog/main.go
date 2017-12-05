@@ -18,23 +18,31 @@ func main() {
 }
 
 func testSort() {
-	wanted, testCase := makeSortCase(1000, 1000000)
+	wanted, testCase := makeSortCase(100, 100)
 
 	var worst time.Duration
 	for _, tc := range testCase {
-		bt := time.Now()
-		r := p.Sort(tc)
-		ut := time.Since(bt)
+		// ut := wrap(p.Sort, tc, wanted) // 1000, 100000 14.582ms; 10, 1000000 78.041ms; 10, 10000000 913.975ms; 5, 100000000 10.565506s
+		ut := wrap(p.SortConcurrent, tc, wanted) // 1000, 100000 28.035ms; 10, 1000000 101.013ms; 10, 10000000 987.183ms; 5, 100000000 10.572266s
 		if ut > worst {
 			worst = ut
 		}
-		if !reflect.DeepEqual(r, wanted) {
-			fmt.Printf("sort failed, get: %v\n", r)
-		} else {
-			fmt.Printf("used time: %v\n", ut)
-		}
 	}
+
 	fmt.Printf("worst time: %v\n", worst)
+}
+
+func wrap(f func([]int) []int, had, wanted []int) time.Duration {
+	bt := time.Now()
+	r := f(had)
+	ut := time.Since(bt)
+
+	if !reflect.DeepEqual(r, wanted) {
+		fmt.Printf("sort failed, get: %v, used time: %v\n", r, ut)
+	} else {
+		// fmt.Printf("used time: %v\n", ut)
+	}
+	return ut
 }
 
 // 生成cnt个从0到num-1的随机数组

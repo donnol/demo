@@ -1,10 +1,24 @@
 package p20171201
 
+import (
+	"sync"
+)
+
 // Sort 排序
 // 排序过程可视化 https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
 func Sort(s []int) []int {
 	l, r := 0, len(s)-1
 	quicksort(s, l, r)
+	return s
+}
+
+// SortConcurrent 并行排序
+func SortConcurrent(s []int) []int {
+	l, r := 0, len(s)-1
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go quicksortConcurrent(&wg, s, l, r)
+	wg.Wait()
 	return s
 }
 
@@ -43,6 +57,17 @@ func partition(s []int, l, r int) int {
 	}
 	s[i+1], s[r] = s[r], s[i+1] // 将基准放到合适的位置
 	return i + 1
+}
+
+// 并行计算
+func quicksortConcurrent(wg *sync.WaitGroup, s []int, l, r int) {
+	defer wg.Done()
+	if r > l {
+		p := partition(s, l, r)
+		wg.Add(2)
+		go quicksortConcurrent(wg, s, l, p-1)
+		go quicksortConcurrent(wg, s, p+1, r)
+	}
 }
 
 // wiki https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F

@@ -5,7 +5,7 @@
             <li>{{msg}}</li><br>
             <li>{{content}}</li><br>
         </ul>
-        <h2><a>{{author}}</a></h2>
+        <a class="author">{{author}}</a>
     </div>
 </template>
 
@@ -62,8 +62,8 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-h2 {
-  color: #443322;
+.author {
+  color: #42b322;
   text-align: right;
 }
 </style>

@@ -1,8 +1,12 @@
 // From https://making.pusher.com/golangs-real-time-gc-in-theory-and-practice/
-// https://dave.cheney.net/2014/07/11/visualising-the-go-garbage-collector
-// 	gcvis go run main.go
-// https://blog.golang.org/go15gc
-// https://talks.golang.org/2015/go-gc.pdf
+// Relation
+// 	https://dave.cheney.net/2014/07/11/visualising-the-go-garbage-collector
+// 		gcvis go run main.go
+// 	https://blog.golang.org/go15gc
+// 	https://talks.golang.org/2015/go-gc.pdf
+// 	https://ninokop.github.io/2017/11/09/Go-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/
+
+// For gc test
 package main
 
 import (

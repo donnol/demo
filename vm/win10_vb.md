@@ -40,6 +40,8 @@
 
 ## SSH 连接虚拟机系统
 
+需要设置 网络 为 NAT 模式
+
 1 在 vbox 里添加 网络-高级-端口转发规则
 
     名称：ssh // 可以是任意名字，当有多个规则时作为区分
@@ -50,3 +52,17 @@
     子系统端口：22 // 虚拟机系统开启ssh服务时配置文件里的端口，ubuntu可在 /etc/ssh/ssh_config 文件里指定
 
 2 在本地连接 ssh -p 3022 jd@127.0.0.1 // jd 替换为虚拟机系统的用户名
+
+## 科学上网
+
+1 本地已经有 ss ，虚拟机通过本地的 ss 代理
+
+    ip route show 拿到 default via 后面的 虚拟路由器IP地址 vm-route-ip
+    http_proxy=http://vm-route-ip:1080 ping www.google.com
+    或者
+    需要设置 网络 为 桥接模式
+    在宿主机windows上运行shadowsocks.exe并勾选“允许局域网连接”
+    使用桥接方式运行虚拟机（这时虚拟机与宿主处于同一个局域网）
+    进入ubuntu系统，System Settings – Network – Network proxy勾选Manual（手动）,地址全部填宿主机IP（局域网网段），设置好代理端口（可在windows下的shadowsocks查看，一般为默认1080）
+    ubuntu用浏览器访问www.google.com，成功
+    如果开启了 桥接模式，就无法设置 SSH 了

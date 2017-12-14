@@ -65,4 +65,3 @@
     使用桥接方式运行虚拟机（这时虚拟机与宿主处于同一个局域网）
     进入ubuntu系统，System Settings – Network – Network proxy勾选Manual（手动）,地址全部填宿主机IP（局域网网段），设置好代理端口（可在windows下的shadowsocks查看，一般为默认1080）
     ubuntu用浏览器访问www.google.com，成功
-    如果开启了 桥接模式，就无法设置 SSH 了

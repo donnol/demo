@@ -88,3 +88,26 @@
 ## 备份与恢复
 
 [关键是要保留 vdi 文件和快照的顺序(\*.vbox 里面 HardDisks 标签)](http://www.cnblogs.com/zjutlitao/p/5132610.html)
+
+## 访问服务
+
+1 宿主机访问虚拟机里运行的服务，方便使用宿主机的浏览器调试
+
+    vbox 的 NAT 网卡里面添加多一条端口转发规则 8520 -> 8520
+    建立规则后，在虚拟机运行过程中，本地不能再使用这个端口
+
+2 虚拟机访问宿主机里运行的服务
+
+    ？？估计是 polipo 配置的问题
+
+        jd@jd-ubuntu:~/share/src/demo/server$ curl http://192.168.1.120:8510
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+        <html><head>
+        <title>Proxy error: 502 Server dropped connection.</title>
+        </head><body>
+        <h1>502 Server dropped connection</h1>
+        <p>The following error occurred while trying to access <strong>http://192.168.1.120:8510/</strong>:<br><br>
+        <strong>502 Server dropped connection</strong></p>
+        <hr>Generated Fri, 15 Dec 2017 16:40:07 CST by Polipo on <em>jd-ubuntu:8123</em>.
+        </body></html>
+    TODO 改天，新建一个虚拟机试下

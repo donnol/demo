@@ -40,7 +40,7 @@
 
 ## SSH 连接虚拟机系统
 
-需要设置 网络 为 NAT 模式
+需要在网络里添加一个网卡，设置 连接方式 为 NAT 模式
 
 1 在 vbox 里添加 网络-高级-端口转发规则
 
@@ -58,10 +58,29 @@
 1 本地已经有 ss ，虚拟机通过本地的 ss 代理
 
     ip route show 拿到 default via 后面的 虚拟路由器IP地址 vm-route-ip
-    http_proxy=http://vm-route-ip:1080 ping www.google.com
-    或者
-    需要设置 网络 为 桥接模式
-    在宿主机windows上运行shadowsocks.exe并勾选“允许局域网连接”
+    http_proxy=http://vm-route-ip:1080 ping www.google.com (这个试过了但是不行)
+
+    需要在网络里添加一个网卡，设置 连接方式 为 桥接模式
+    在宿主机 windows 上运行 shadowsocks.exe 并勾选“允许局域网连接”
     使用桥接方式运行虚拟机（这时虚拟机与宿主处于同一个局域网）
     进入ubuntu系统，System Settings – Network – Network proxy勾选Manual（手动）,地址全部填宿主机IP（局域网网段），设置好代理端口（可在windows下的shadowsocks查看，一般为默认1080）
-    ubuntu用浏览器访问www.google.com，成功
+    至此，使用浏览器访问www.google.com，就可以成功
+
+    终端使用，需要设置环境变量 ALL_PROXY=socks5://[宿主机局域网ip地址]:1080 (这个方法好像不行哦，还是需要使用 polipo )
+    或者
+    也可以使用 [polipo](http://droidyue.com/blog/2016/04/04/set-shadowsocks-proxy-for-terminal/index.html) 将 socks 协议转换成 http 协议
+
+    检验：
+        curl ip.gs
+        http_proxy=http://127.0.0.1:8123 curl ip.gs
+        ALL_PROXY=socks5://192.168.1.120:1080 wget http://google.com
+        如果连接失败，加 -i 可打印更多信息
+    注意：
+        测试连接的时候 http_proxy=http://127.0.0.1:8123 ping www.google.com 无反应，需要使用 curl 或者 wget 才可以
+
+2 最后，写入 ~/.bashrc
+
+    export http_proxy=http://127.0.0.1:8123
+    export https_proxy=https://127.0.0.1:8123
+    或者
+    export ALL_PROXY=socks5://192.168.1.120:1080 (单纯设置这个的时候并不能成功，还是需要上面的设置)

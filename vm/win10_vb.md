@@ -84,3 +84,7 @@
     export https_proxy=https://127.0.0.1:8123
     或者
     export ALL_PROXY=socks5://192.168.1.120:1080 (单纯设置这个的时候并不能成功，还是需要上面的设置)
+
+## 备份与恢复
+
+[关键是要保留 vdi 文件和快照的顺序(\*.vbox 里面 HardDisks 标签)](http://www.cnblogs.com/zjutlitao/p/5132610.html)

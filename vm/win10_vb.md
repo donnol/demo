@@ -111,3 +111,16 @@
         <hr>Generated Fri, 15 Dec 2017 16:40:07 CST by Polipo on <em>jd-ubuntu:8123</em>.
         </body></html>
     TODO 改天，新建一个虚拟机试下
+
+## 文件传输
+
+1 scp 传输
+
+    scp -P3022 /local/file username@remotehost:/path/to/save/
+
+2 sftp 传输
+
+    sftp username@remotehost:/path/to/go -P3022
+    get xxx
+    put xxx
+    出现了 Permission denied, please try again. 错误

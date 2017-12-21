@@ -1,0 +1,32 @@
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.File{Doc:(*ast.CommentGroup)(nil), Package:1, Name:(*ast.Ident)(0xc42000a060), Decls:[]ast.Decl{(*ast.GenDecl)(0xc4200560c0), (*ast.GenDecl)(0xc420056140)}, Scope:(*ast.Scope)(0xc42000e220), Imports:[]*ast.ImportSpec(nil), Unresolved:[]*ast.Ident{(*ast.Ident)(0xc42000a0e0)}, Comments:[]*ast.CommentGroup(nil)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.Ident{NamePos:9, Name:"p", Obj:(*ast.Object)(nil)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.GenDecl{Doc:(*ast.CommentGroup)(nil), TokPos:12, Tok:64, Lparen:0, Specs:[]ast.Spec{(*ast.ValueSpec)(0xc42006c1e0)}, Rparen:0}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.ValueSpec{Doc:(*ast.CommentGroup)(nil), Names:[]*ast.Ident{(*ast.Ident)(0xc42000a080)}, Type:ast.Expr(nil), Values:[]ast.Expr{(*ast.BasicLit)(0xc42000a0a0)}, Comment:(*ast.CommentGroup)(nil)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.Ident{NamePos:18, Name:"c", Obj:(*ast.Object)(0xc42006c230)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.BasicLit{ValuePos:22, Kind:6, Value:"1.0"}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.GenDecl{Doc:(*ast.CommentGroup)(nil), TokPos:27, Tok:85, Lparen:0, Specs:[]ast.Spec{(*ast.ValueSpec)(0xc42006c280)}, Rparen:0}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.ValueSpec{Doc:(*ast.CommentGroup)(nil), Names:[]*ast.Ident{(*ast.Ident)(0xc42000a0c0)}, Type:ast.Expr(nil), Values:[]ast.Expr{(*ast.BinaryExpr)(0xc4200661e0)}, Comment:(*ast.CommentGroup)(nil)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.Ident{NamePos:31, Name:"X", Obj:(*ast.Object)(0xc42006c2d0)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.BinaryExpr{X:(*ast.BinaryExpr)(0xc4200661b0), OpPos:45, Op:12, Y:(*ast.Ident)(0xc42000a140)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.BinaryExpr{X:(*ast.CallExpr)(0xc420056100), OpPos:42, Op:14, Y:(*ast.BasicLit)(0xc42000a120)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.CallExpr{Fun:(*ast.Ident)(0xc42000a0e0), Lparen:36, Args:[]ast.Expr{(*ast.BasicLit)(0xc42000a100)}, Ellipsis:0, Rparen:41}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.Ident{NamePos:35, Name:"f", Obj:(*ast.Object)(nil)}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.BasicLit{ValuePos:37, Kind:6, Value:"3.14"}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.BasicLit{ValuePos:43, Kind:5, Value:"2"}
+2017/12/21 16:53:22 main.go:138: === inspect: &ast.Ident{NamePos:47, Name:"c", Obj:(*ast.Object)(0xc42006c230)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.File{Doc:(*ast.CommentGroup)(nil), Package:1, Name:(*ast.Ident)(0xc42000a400), Decls:[]ast.Decl{(*ast.GenDecl)(0xc420056380), (*ast.GenDecl)(0xc420056400)}, Scope:(*ast.Scope)(0xc42000e330), Imports:[]*ast.ImportSpec(nil), Unresolved:[]*ast.Ident{(*ast.Ident)(0xc42000a480)}, Comments:[]*ast.CommentGroup(nil)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.Ident{NamePos:9, Name:"p", Obj:(*ast.Object)(nil)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.GenDecl{Doc:(*ast.CommentGroup)(nil), TokPos:12, Tok:64, Lparen:0, Specs:[]ast.Spec{(*ast.ValueSpec)(0xc42006c3c0)}, Rparen:0}
+2017/12/21 16:53:22 main.go:151: node is: &ast.ValueSpec{Doc:(*ast.CommentGroup)(nil), Names:[]*ast.Ident{(*ast.Ident)(0xc42000a420)}, Type:ast.Expr(nil), Values:[]ast.Expr{(*ast.BasicLit)(0xc42000a440)}, Comment:(*ast.CommentGroup)(nil)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.Ident{NamePos:18, Name:"c", Obj:(*ast.Object)(0xc42006c410)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.BasicLit{ValuePos:22, Kind:6, Value:"1.0"}
+2017/12/21 16:53:22 main.go:151: node is: &ast.GenDecl{Doc:(*ast.CommentGroup)(nil), TokPos:27, Tok:85, Lparen:0, Specs:[]ast.Spec{(*ast.ValueSpec)(0xc42006c460)}, Rparen:0}
+2017/12/21 16:53:22 main.go:151: node is: &ast.ValueSpec{Doc:(*ast.CommentGroup)(nil), Names:[]*ast.Ident{(*ast.Ident)(0xc42000a460)}, Type:ast.Expr(nil), Values:[]ast.Expr{(*ast.BinaryExpr)(0xc420066300)}, Comment:(*ast.CommentGroup)(nil)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.Ident{NamePos:31, Name:"X", Obj:(*ast.Object)(0xc42006c4b0)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.BinaryExpr{X:(*ast.BinaryExpr)(0xc4200662d0), OpPos:45, Op:12, Y:(*ast.Ident)(0xc42000a4e0)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.BinaryExpr{X:(*ast.CallExpr)(0xc4200563c0), OpPos:42, Op:14, Y:(*ast.BasicLit)(0xc42000a4c0)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.CallExpr{Fun:(*ast.Ident)(0xc42000a480), Lparen:36, Args:[]ast.Expr{(*ast.BasicLit)(0xc42000a4a0)}, Ellipsis:0, Rparen:41}
+2017/12/21 16:53:22 main.go:151: node is: &ast.Ident{NamePos:35, Name:"f", Obj:(*ast.Object)(nil)}
+2017/12/21 16:53:22 main.go:151: node is: &ast.BasicLit{ValuePos:37, Kind:6, Value:"3.14"}
+2017/12/21 16:53:22 main.go:151: node is: &ast.BasicLit{ValuePos:43, Kind:5, Value:"2"}
+2017/12/21 16:53:22 main.go:151: node is: &ast.Ident{NamePos:47, Name:"c", Obj:(*ast.Object)(0xc42006c410)}

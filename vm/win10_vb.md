@@ -162,3 +162,7 @@
     sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
     sudo apt-get update
     sudo apt-get install code # or code-insiders
+
+## 启用 USB 设备后，宿主机鼠键无响应
+
+## 虚拟机无法接收鼠键输入

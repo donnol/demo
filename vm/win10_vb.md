@@ -124,3 +124,41 @@
     get xxx
     put xxx
     出现了 Permission denied, please try again. 错误
+
+## 复制粘贴
+
+[参考](https://askubuntu.com/questions/63420/how-to-fix-virtualboxs-copy-and-paste-to-host-machine)
+
+1 安装增强功能(挂载共享目录时已安装)
+
+2 关闭虚拟机，在虚拟机设置里
+
+    设备-共享粘贴板-双向
+
+    控制-设置-存储
+        控制器SATA-勾选"使用主机输入输出(I/O)缓存"
+        控制器SATA-点击***.vdi-勾选"固态驱动器"
+    重启虚拟机
+
+3 在虚拟机系统内安装
+
+    sudo apt install xorg-video-abi-20 xserver-xorg-core
+    sudo apt install virtualbox-guest-x11
+    VBoxClient --clipboard
+    出现错误: VBoxClient: Failed to connect to the VirtualBox kernel service
+        没有加 sudo
+    正确运行：sudo VBoxClient --clipboard
+
+4 要使用 ctrl+c 和 ctrl+v 时
+
+    使用 ctrl+shift+c 和 ctrl+shift+v 替代
+
+## 桌面版 ubuntu 可选择安装 vscode
+
+[参考](https://code.visualstudio.com/docs/setup/linux)
+
+    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+    sudo apt-get update
+    sudo apt-get install code # or code-insiders

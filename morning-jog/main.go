@@ -7,6 +7,7 @@ import (
 	"time"
 
 	p "demo/morning-jog/2017-12-01"
+	_ "demo/morning-jog/2017-12-28"
 )
 
 func init() {

@@ -3,3 +3,6 @@ godot
 gox
 graphviz/db
 jhugo
+colly/_cache
+colly/a.out
+etcd/default.etcd

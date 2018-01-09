@@ -74,3 +74,18 @@
         所以 B+tree 更适合用来存储外部数据，也就是所谓的磁盘数据(如 mysql )
 
 [参考](https://segmentfault.com/a/1190000004690721)
+
+6 MVCC
+
+    3.0 后，使用 WiredTiger 作为默认引擎，通过该引擎的 MVCC 开始支持文档级别的锁
+
+[参考](https://dawning7670.github.io/2017/10/17/MongoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/)
+[参考](https://draveness.me/mongodb-wiredtiger)
+
+7 存储引擎
+
+[参考](http://wudaijun.com/2016/06/mongodb-storage-engine/)
+
+8 最新
+
+    v3.6 主要提升安全性

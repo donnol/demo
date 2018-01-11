@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<!-- 内容 -->
+
+<body>
+    <div id="top_id" class="top">
+        <p id="top_title">top</p>
+    </div>
+    <div id="mid_id" class="mid">
+        <p id="mid_title">mid</p>
+        <div id="get_form">
+            <form action="http://localhost:8520" method="get" target=_blank>
+                <div>
+                    <label>name</label>
+                    <input name="get" id="get" value="get">
+                    <input type="submit" value="get">
+                </div>
+            </form>
+        </div>
+        <div id="post_form">
+            <form action="http://localhost:8520" method="post" target=_self>
+                <div>
+                    <label>name</label>
+                    <input name="post" id="post" value="post">
+                    <input type="submit" value="post">
+                </div>
+            </form>
+        </div>
+        <del>deleted text</del>
+        <details>details</details>
+        <embed src="http://www.google.com" type="url">
+    </div>
+    <div id="bot_id" class="bot">
+        <p id="bot_title">bot</p>
+    </div>
+</body>
+
+<!-- 样式 -->
+
+<style>
+    .top {
+        text-align: center;
+        -webkit-text-size-adjust: auto;
+        color: darkcyan;
+        text-anchor: start;
+    }
+
+    .mid {
+        text-align: center;
+    }
+
+    .bot {
+        text-align: center;
+    }
+</style>
+
+<!-- 交互 -->
+
+<script>
+    function changeColor() {
+        // 改变颜色
+        var top = document.getElementById("top_id")
+        top.style.color = "brown"
+    }
+    setTimeout(changeColor, 1000)
+</script>
+
+</html>

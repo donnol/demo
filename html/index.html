@@ -15,8 +15,8 @@
         <p id="top_title">top</p>
     </div>
     <div id="mid_id" class="mid">
-        <p id="mid_title">mid</p>
-        <div id="get_form">
+        <!-- <p id="mid_title">mid</p> -->
+        <!-- <div id="get_form">
             <form action="http://localhost:8520" method="get" target=_blank>
                 <div>
                     <label>name</label>
@@ -24,19 +24,26 @@
                     <input type="submit" value="get">
                 </div>
             </form>
-        </div>
-        <div id="post_form">
-            <form action="http://localhost:8520" method="post" target=_self>
-                <div>
-                    <label>name</label>
-                    <input name="post" id="post" value="post">
-                    <input type="submit" value="post">
-                </div>
-            </form>
-        </div>
-        <del>deleted text</del>
+        </div> -->
+        <!-- <form action="http://localhost:8520" method="post" target=_self> -->
+        <label id="label">name</label>
+        <input id="input_name" name="post" id="post" value="post">
+        <input id="input_submit" type="submit" value="post">
+        <!-- </form> -->
+        <!-- <p>
+            十年生死两茫茫，左牵黄，右擎苍，自是不思量。
+            <br> 昨夜翻风叶，扰人乱心凉，忽忽如人卷残梦，复归何园。
+            <br> 往年如山不动，如水不涌，戚戚考量，成一日之君。
+            <br> 得之，奈何忘之。
+            <br> 本性，执拗，忍耐，一一丢弃。
+            <br> 贪多，懒惰，畏难，齐齐光临。
+            <br> 呜呼哀哉！
+            <br> 尽从本性，事与愿违；思虑长远，方有作为。
+            <br> 非宁静无以致远，非淡泊无以明志……
+        </p> -->
+        <!-- <del>deleted text</del>
         <details>details</details>
-        <embed src="http://www.google.com" type="url">
+        <embed src="http://www.google.com" type="url"> -->
     </div>
     <div id="bot_id" class="bot">
         <p id="bot_title">bot</p>
@@ -46,19 +53,53 @@
 <!-- 样式 -->
 
 <style>
-    .top {
+    * {
+        /* 尺寸 */
+        width: 80%;
+        height: 100%;
+
+        /* 居中 */
+        padding: auto;
+        margin: auto;
+
+        /* 边框 */
+        border: none;
+
+        /* 字体 */
         text-align: center;
+        font-family: Courier New, Courier, monospace;
+    }
+
+    .top {
         -webkit-text-size-adjust: auto;
         color: darkcyan;
         text-anchor: start;
+        height: 10%;
     }
 
     .mid {
-        text-align: center;
+        color: rgb(121, 90, 52);
+        height: 80%;
+    }
+
+    .label {
+        width: 20px;
+        height: 10px;
+    }
+
+    .input_name {
+        width: 20px;
+        height: 10px;
+    }
+
+    .input_submit {
+        width: 30px;
+        height: 20px;
     }
 
     .bot {
-        text-align: center;
+        color: rgb(190, 129, 54);
+        height: 10%;
     }
 </style>
 

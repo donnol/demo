@@ -1,0 +1,4 @@
+@startuml test
+Alice -> Bob : test
+Bob -> Cat:test
+@enduml

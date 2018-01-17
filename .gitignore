@@ -7,3 +7,4 @@ golang/colly/_cache
 golang/colly/a.out
 etcd/default.etcd
 vue-static/node_modules
+*.pem

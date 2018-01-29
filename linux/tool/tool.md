@@ -73,3 +73,9 @@ strace
     跟踪进程执行时的系统调用和所接收的信号
 
     例如：strace nginx
+
+unhide
+
+    一个小巧的网络取证工具，能够发现那些借助 rootkit、LKM 及其它技术隐藏的进程和 TCP/UDP 端口
+
+    例如：sudo unhide [options] proc

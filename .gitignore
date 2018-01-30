@@ -9,3 +9,4 @@ etcd/default.etcd
 vue-static/node_modules
 *.pem
 shark
+blockchain/vendor/*

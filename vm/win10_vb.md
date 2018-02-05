@@ -89,7 +89,17 @@
 
 [关键是要保留 vdi 文件和快照的顺序(\*.vbox 里面 HardDisks 标签)](http://www.cnblogs.com/zjutlitao/p/5132610.html)
 
-## 访问服务
+## 网络服务
+
+在宿主机查看虚拟机
+
+    /mnt/c/Oracle/VirtualBox/VBoxManage.exe guestproperty
+
+get v-ubuntu "/VirtualBox/GuestInfo/Net/0/V4/IP"
+
+在虚拟机里查看，使用虚拟机系统自带工具
+
+    如在linux，可以 ifconfig, ip
 
 1 宿主机访问虚拟机里运行的服务，方便使用宿主机的浏览器调试
 
@@ -111,6 +121,19 @@
         <hr>Generated Fri, 15 Dec 2017 16:40:07 CST by Polipo on <em>jd-ubuntu:8123</em>.
         </body></html>
     TODO 改天，新建一个虚拟机试下
+
+3 两台虚拟机之间的通信
+
+    v1 端口转发
+        虚拟机 3306 -> 宿主机 3006
+    v2 端口转发
+        虚拟机 3306 -> 宿主机 4006
+    v1 -> v2
+        宿主机ip(xxx.xxx.xxx.xxx):4006
+    v2 -> v1
+        宿主机ip(xxx.xxx.xxx.xxx):3006
+
+[官方文档-虚拟网络介绍](http://www.virtualbox.org/manual/ch06.html)
 
 ## 文件传输
 

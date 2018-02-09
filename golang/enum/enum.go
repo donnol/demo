@@ -1,5 +1,5 @@
 // 枚举，一组预定义好的值
-// 需要遍历和获取
+// 需要遍历，获取和校验，容易扩展
 // 一般用于特定范围的变量
 package main
 
@@ -62,20 +62,26 @@ func timezone() {
 // 	Saturday,
 // }
 
+// Enum 枚举
 type Enum struct {
 	Value string // 值
 	EN    string // 英文注释
 	CN    string // 中文注释
+	// 如果要添加更多种语言表示呢？
 }
 
+// String 打印
 func (e Enum) String() string {
 	return fmt.Sprintf("value is %s, en is %s, cn is %s", e.Value, e.EN, e.CN)
 }
 
+// WeekdayCNT 周数
 const WeekdayCNT = 7
 
+// Weekday 周列表
 type Weekday [WeekdayCNT]Enum
 
+// One 取一个
 func (w Weekday) One(value string) (Enum, error) {
 	for _, v := range w {
 		if v.Value == value {
@@ -85,6 +91,7 @@ func (w Weekday) One(value string) (Enum, error) {
 	return Enum{}, errors.New("Not Exist")
 }
 
+// weekdays 周列表变量
 var weekdays = Weekday{
 	{"sunday", "Sunday", "周日"},
 	{"monday", "Monday", "周一"},
@@ -95,10 +102,13 @@ var weekdays = Weekday{
 	{"saturday", "Saturday", "周六"},
 }
 
+// MonthCNT 月数
 const MonthCNT = 12
 
+// Month 月列表
 type Month [MonthCNT]Enum
 
+// months 月列表变量
 var months = Month{
 	{"january", "January", "一月"},
 	{"february", "February", "二月"},
@@ -114,10 +124,13 @@ var months = Month{
 	{"december", "December", "十二月"},
 }
 
+// HourCNT 时数
 const HourCNT = 24
 
+// Hour 时列表
 type Hour [HourCNT]Enum
 
+// hours 时列表变量
 var hours = Hour{
 	{"0", "00:00:00", "零点"},
 	{"1", "01:00:00", "一点"},
@@ -145,6 +158,7 @@ var hours = Hour{
 	{"23", "23:00:00", "二十三点"},
 }
 
+// TimeZone 时区
 type TimeZone Enum
 
 // const ( // const initializer Enum literal is not a constant
@@ -190,6 +204,7 @@ var (
 	PSTD = TimeZone{"pstd", "PSTD", "太平洋标准时间D"}
 )
 
+// In 是否在数组里面
 func In(enums []Enum, value string) bool {
 	for _, v := range enums {
 		if v.Value == value {
@@ -199,16 +214,20 @@ func In(enums []Enum, value string) bool {
 	return false
 }
 
+// Color 颜色
 type Color string
 
 const (
+	// Black 黑色
 	Black Color = "black"
-	Red   Color = "red"
-	Blue  Color = "blue"
+	// Red 红色
+	Red Color = "red"
+	// Blue 蓝色
+	Blue Color = "blue"
 )
 
 var (
-	// map 遍历是随机顺序的
+	// ColorMap 遍历是随机顺序的
 	ColorMap = map[Color]Enum{
 		Black: Enum{string(Black), "Black", "黑色"},
 		Red:   Enum{string(Red), "Red", "红色"},

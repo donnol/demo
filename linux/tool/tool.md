@@ -100,3 +100,9 @@ ip
     查看网络信息
 
     例如：ip
+
+fio
+
+    测试磁盘读写速度(iops)
+
+    例如：sudo fio --bs=4k --ioengine=libaio --iodepth=32 --direct=1 --rw=randread --time_based --runtime=60 --refill_buffers --norandommap --randrepeat=0 --group_reporting --name=fio-read --size=100G --filename=/dev/vda

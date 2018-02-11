@@ -27,7 +27,7 @@
 
 ```docker
 # 编写一个运行 Go 程序输出 Hello World 的镜像
-FROM golang
+FROM golang # 使用 scratch 作为基础镜像时，意味着你不以任何镜像为基础，接下来所写的指令将作为镜像第一层开始存在
 COPY nm WORKDIR/
 RUN WORKDIR/nm # nm 是命令名
 ```

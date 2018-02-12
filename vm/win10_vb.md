@@ -146,7 +146,10 @@ get v-ubuntu "/VirtualBox/GuestInfo/Net/0/V4/IP"
     sftp username@remotehost:/path/to/go -P3022
     get xxx
     put xxx
-    出现了 Permission denied, please try again. 错误
+    连接时出现了 Permission denied, please try again. 错误
+        检查密码是否正确
+    连接成功后，get file 时出现 Couldn't open local file "xxx" for writing: Permission denied
+        检查一下是否拥有所在主机目录的读写权限
 
 ## 复制粘贴
 

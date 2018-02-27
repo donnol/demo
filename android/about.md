@@ -24,3 +24,26 @@
 [SSH](https://wiki.termux.com/wiki/SSH)
 [中文教程](http://blackwolfsec.cc/2016/12/10/termux/)
 [中文 SSH](https://www.findhao.net/easycoding/1652)
+
+2 使用 Go
+
+[参考](http://rafalgolarz.com/blog/2017/01/15/running_golang_on_android/)
+
+    安装
+        pkg install golang
+    测试
+        go version
+        go env
+        添加文件 hello.go
+            package main
+            import "fmt"
+            func main() {
+                    fmt.Println("hello android.")
+            }
+        直接运行 go run hello.go
+        或者编译后运行
+            go build -o hello
+            ./hello
+    在主机编译好二进制文件，再传输到安卓机器使用
+        GOOS=linux GOARCH=arm go build -o hello
+        scp -P 8022 /local/hello user@host:/data/data/com.termux/files/home/hello

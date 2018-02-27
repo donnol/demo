@@ -106,3 +106,9 @@ fio
     测试磁盘读写速度(iops)
 
     例如：sudo fio --bs=4k --ioengine=libaio --iodepth=32 --direct=1 --rw=randread --time_based --runtime=60 --refill_buffers --norandommap --randrepeat=0 --group_reporting --name=fio-read --size=100G --filename=/dev/vda
+
+lftp
+
+    文件传输程序，可以并行下载
+
+    例如：lftp -e 'pget -n 5 -c http://kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.2.tar.bz2'

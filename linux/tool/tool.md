@@ -112,3 +112,20 @@ lftp
     文件传输程序，可以并行下载
 
     例如：lftp -e 'pget -n 5 -c http://kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.2.tar.bz2'
+
+iptables
+
+    配置 Linux 内核 防火墙 的命令行工具(将会被 nftables 替代)
+    iptables 可以检测、修改、转发、重定向和丢弃 IPv4 数据包
+    iptables规则是数组式布局
+    机械式的，一次处理一条规则
+
+    例如：sudo iptables -I INPUT -s xxx.xxx.xxx.x/28 -j DROP # 参数化
+
+nftables
+
+    Netfilter
+    nftables规则是链表式布局
+    不是机械式的，是可编程的
+
+    例如：nft add rule ip filter output tcp dport 80 drop # 语法

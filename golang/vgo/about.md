@@ -42,4 +42,13 @@
         如果是使用 vgo 构建的程序，使用 goversion -m vgoapp，可以查到该程序依赖包的信息
     一个已验证的构建, 可以检查是否使用了预期的源代码
 
-[参考](https://lingchao.xin/post/vgo-tour.html)
+一个久远的构建历史
+
+    在1970年代，你会遇到这样的问题，你的程序出错了，然后你修复了它，重新构建时使用了旧的目标文件，导致错误一直出现，你万万没想到是构建的问题，直到你调试了好几个小时(调试一个正确的程序，而忘记在构建时使用正确的代码)
+
+隔离规则
+
+    make
+
+[原文参考](https://research.swtch.com/vgo-cmd)
+[译文参考](https://lingchao.xin/post/vgo-tour.html)

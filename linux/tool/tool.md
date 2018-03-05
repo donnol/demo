@@ -129,3 +129,31 @@ nftables
     不是机械式的，是可编程的
 
     例如：nft add rule ip filter output tcp dport 80 drop # 语法
+
+lscpu
+
+    查看 CPU 信息
+
+    例如：lscpu
+    类似：cat /proc/cpuinfo # 信息更多
+
+free
+
+    查看内存信息
+
+    例如：free -m
+    类似：cat /proc/meminfo
+    类似：dmidecode -t memory
+
+lsblk
+
+    查看磁盘和分区
+
+    例如：lsblk
+    类似：fdisk -l
+
+lspci
+
+    查看主板所有硬件槽信息
+
+    例如：lspci

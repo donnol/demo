@@ -157,3 +157,9 @@ lspci
     查看主板所有硬件槽信息
 
     例如：lspci
+
+du
+
+    统计文件占用的磁盘大小
+
+    例如：du /path -h -t 1024000 --exclude=xxx # -h: 以 K 为单位展示; -t: 指定阈值; --exclude: 排除 xxx 文件/目录

@@ -163,3 +163,29 @@ du
     统计文件占用的磁盘大小
 
     例如：du /path -h -t 1024000 --exclude=xxx # -h: 以 K 为单位展示; -t: 指定阈值; --exclude: 排除 xxx 文件/目录
+
+ldd
+
+    访问共享对象依赖关系(列出可执行文件依赖的动态文件，如 .so)
+
+    例如：ldd a.out
+
+showterm
+
+    录制终端会话
+
+    例如：showterm # 开始，结束时输入 exit 即可结束录制，并把视频上传到 http://showterm.io 网站上，暂时不支持video格式
+
+[演示](http://showterm.io/7aeed561c67c7c852b09a)
+
+ffmpeg
+
+    音视频格式转换
+
+    例如：ffmpeg -t 5 -ss 00:00:10 -i funny.mp4 out%04d.gif # 解压输入视频的视频帧，从第10秒开始，每5秒一帧
+
+imagemagick
+
+    将图片合并成gif动图
+
+    例如：convert -delay 1x20 -loop 0 out*.gif animation.gif # 生成一副每秒20帧和循环无数次的动态GIF图片，其中 out*.gif 为输入图片，animation.gif 为输出动图

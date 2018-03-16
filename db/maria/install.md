@@ -32,3 +32,7 @@
         Disallow root login remotely?
         Remove test database and access to it?
         Reload privilege tables now? 重新载入权限表? 选 Y，上面的配置才会 生效
+
+3 docker 启动
+
+    sudo docker run -d -p 53306:3306 -e 'MYSQL_ROOT_PASSWORD=1' mariadb

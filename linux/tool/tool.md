@@ -189,3 +189,15 @@ imagemagick
     将图片合并成gif动图
 
     例如：convert -delay 1x20 -loop 0 out*.gif animation.gif # 生成一副每秒20帧和循环无数次的动态GIF图片，其中 out*.gif 为输入图片，animation.gif 为输出动图
+
+dnsmasq
+
+    开源的轻量级DNS转发和DHCP、TFTP服务器，使用C语言编写
+
+    例如：sudo dnsmasq --no-daemon
+
+dig
+
+    DNS 查询工具(Domain Information Groper)
+
+    例如：dig jdscript.com

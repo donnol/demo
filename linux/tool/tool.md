@@ -201,3 +201,9 @@ dig
     DNS 查询工具(Domain Information Groper)
 
     例如：dig jdscript.com
+
+hardinfo
+
+    查看机器硬件信息
+
+    例如：hardinfo

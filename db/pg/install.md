@@ -33,3 +33,18 @@
     create extension rdkit;
 
 [参考](http://www.rdkit.org/docs/Install.html)
+
+3 docker 启动
+
+    启动
+        sudo docker run -it -p 5432:5432 postgres # 这里会启动容器
+    获取容器名
+        sudo docker ps # 最后一列 NAMES 的值，下面登录时使用 lucid_kilby 是我拿到的容器名
+    psql 登录数据库
+        sudo docker exec -it lucid_kilby psql -U postgres -d demo # 使用 exec，-d 指定数据库
+    登录 bash
+        sudo docker exec -it lucid_kilby bash
+    配置文件目录
+        /var/lib/postgresql/data/postgresql.conf
+    如果想将本地配置挂载到容器里，可在启动容器时用 -v myconf:containerconf 指定
+        sudo docker run -it -p 5432:5432 -v myconf:containerconf postgres # containerconf 一般是 /var/lib/postgresql/data/postgresql.conf

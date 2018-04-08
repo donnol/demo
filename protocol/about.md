@@ -67,3 +67,14 @@
     工具：Wireshark/tshark, Fiddler, Driftnet, HttpWatch, Charles, tcpdump, gopacket, pproxy
     库: libpcap
         winpcap
+
+## [路由器](https://zh.wikipedia.org/wiki/%E8%B7%AF%E7%94%B1%E5%99%A8)
+
+    工作在OSI模型的第三层——即网络层
+
+    路由器与交换机在概念上有一定重叠但也有不同：
+        交换机泛指工作于任何网络层次的数据中继设备（尽管多指网桥），而路由器则更专注于网络层
+
+    From zhihu
+        交换机工作于数据链路层，用来隔离冲突域，连接的所有设备同属于一个广播域（子网），负责子网内部通信
+        路由器工作于网络层，用来隔离广播域（子网），连接的设备分属不同子网，工作范围是多个子网之间，负责网络与网络之间通信

@@ -40,6 +40,13 @@
     www.example.com = www.example.com.root = www.example.com.
         根域名.root对于所有域名都是一样的，所以平时是省略的
 
+[DNS 加密](https://www.v2ex.com/t/445199#reply10)
+
+    防止 ISP 对 DNS 协议的恶意劫持，或者部分 DNS 服务对 NXDOMAIN 的劫持（对解析失败的域名跳转到广告页面
+    工具：DNSCrypt-Proxy
+
+[DNS over HTTPS](https://www.v2ex.com/t/365828)
+
 [ICMP-Internet Control Message Protocol：互联网控制消息协议，是互联网协议族的核心协议之一](https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE)
 
     用于TCP/IP网络中发送控制消息，提供可能发生在通信环境中的各种问题反馈，通过这些信息，使管理者可以对所发生的问题作出诊断，然后采取适当的措施解决

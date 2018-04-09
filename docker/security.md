@@ -49,3 +49,9 @@
 10 在一个联合集群中的角色和访问管理
 
     认证和授权
+
+11 只读运行
+
+    在生产环境，很多时候只需要运行，不需要改变容器里的东西
+
+    docker run -d --read-only --tmpfs /run --tmpfs /tmp IMAGE

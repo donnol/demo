@@ -207,3 +207,9 @@ hardinfo
     查看机器硬件信息
 
     例如：hardinfo
+
+Tripwire
+
+    检查系统文件的完整性
+
+    例如：sudo tripwire --init && sudo tripwire --check

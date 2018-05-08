@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log"
 	"net"
 )
@@ -50,17 +51,16 @@ func tcpServer(addr string) {
 
 func handleConn(conn net.Conn) {
 	defer conn.Close()
-	for {
-		var data = make([]byte, 1024)
-		_, err := conn.Read(data)
-		if err != nil {
-			log.Fatal(err)
-		}
-		log.Println(string(data))
 
-		_, err = conn.Write([]byte("hello"))
-		if err != nil {
-			log.Fatal(err)
-		}
+	// 建立到目标地址的链接
+	targetConn, err := net.Dial("tcp", "www.google.com.hk:443")
+	if err != nil {
+		log.Println(err)
+		return
 	}
+	defer targetConn.Close()
+	conn.Write([]byte("HTTP/1.0 200 Connection Established\r\n\r\n"))
+
+	go io.Copy(targetConn, conn)
+	io.Copy(conn, targetConn)
 }

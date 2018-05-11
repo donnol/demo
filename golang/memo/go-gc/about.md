@@ -46,3 +46,7 @@
 [另外](http://kouucocu.lofter.com/post/1cdb8c4b_50f6300)
 
 [Golang 实现 RadixTree](https://github.com/armon/go-radix/blob/master/radix.go)
+
+[相关博文一](http://knifefly.github.io/2018/02/15/Golang%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%89%96%E6%9E%90/)
+
+[相关博文二](http://www.cnblogs.com/zkweb/p/7880099.html)

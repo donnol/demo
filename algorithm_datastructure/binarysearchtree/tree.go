@@ -1,3 +1,5 @@
+// Package binarysearchtree 非平衡二分搜索树
+// 	From https://flaviocopes.com/golang-data-structure-binary-search-tree/
 package binarysearchtree
 
 import (
@@ -146,33 +148,34 @@ func remove(node *Node, key string) *Node {
 		return node
 	}
 	// key == node.key
-	if node.left == nil && node.right == nil {
+	if node.left == nil && node.right == nil { // 节点没有子节点，直接置nil，即可删除
 		node = nil
 		return nil
 	}
-	if node.left == nil {
+	if node.left == nil { // 左节点为nil，用右节点替换该节点，即可删除
 		node = node.right
 		return node
 	}
-	if node.right == nil {
+	if node.right == nil { // 右节点为nil，用左节点替换该节点，即可删除
 		node = node.left
 		return node
 	}
-	leftMostRightSide := node.right
+	// 左右节点均存在
+	leftMostRightSide := node.right // 从右节点开始
 	for {
-		// 找出右边最小的值
+		// 找出右边最小的值，该值将被移动到被删除节点的位置
 		if leftMostRightSide != nil && leftMostRightSide.left != nil {
 			leftMostRightSide = leftMostRightSide.left
 		} else {
 			break
 		}
 	}
-	node.key, node.value = leftMostRightSide.key, leftMostRightSide.value
-	node.right = remove(node.right, node.key)
+	node.key, node.value = leftMostRightSide.key, leftMostRightSide.value // 替换
+	node.right = remove(node.right, node.key)                             // 左节点不变，右节点更新，因为从右子树拿了一个最小值过来填充这个位置
 	return node
 }
 
-// String 输出字符串
+// String 输出字符串 -- 从左往右，从上往下
 func (bst *BinarySearchTree) String() {
 	stringify(bst.root, 0)
 }

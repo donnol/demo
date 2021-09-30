@@ -23,8 +23,22 @@ func add[T Addable](a, b T) T {
     return a + b
 }
 
+// https://github.com/golang/go/issues/48424
+// 根据这个提案，each函数的签名可以改为：
+// func each[T map[K]V, K comparable, V string](m T) {
+// 也就是省略了interface，直接使用了map[K]V, string等类型来做约束，非常方便
+func each[T interface{map[K]V}, K comparable, V interface{string}](m T) {
+    for k, v := range m {
+        fmt.Println(k, v)
+    }
+}
+
 func main() {
     fmt.Println(add(1,2))
 
     fmt.Println(add("foo","bar"))
+
+    m := make(map[int]string)
+    m[1]= "jd"
+    each(m)
 }

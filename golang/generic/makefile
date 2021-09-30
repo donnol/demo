@@ -6,4 +6,8 @@ install_gotip:
 	CGO_ENABLED=0 gotip download dev.typeparams
 
 build:
-	gotip build -gcflags=-G=3 main.go
+	# gotip build -gcflags=-G=3 main.go
+	gotip build main.go
+
+run:
+	gotip run main.go

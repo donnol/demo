@@ -27,9 +27,12 @@ func solveNQueens(n int) [][]string {
 	return result
 }
 
+// n一直是那个n，row从0开始，递增到n时结束，遍历行
 func backtrack(board []string, n int, row int, result *[][]string) {
+
+	// 能够把所有行都尝试过的，才能得出解；有很多种情况在中间就已经失败了，无法走到这里来
+	// 能走到这里，说明又得到一种解
 	if row == n {
-		// 下完了
 		// board需要拷贝，否则后面的回溯会抹掉盘面
 		tmp := make([]string, n)
 		copy(tmp, board)
@@ -37,6 +40,8 @@ func backtrack(board []string, n int, row int, result *[][]string) {
 		return
 	}
 
+	// n!
+	// 遍历列
 	for col := 0; col < n; col++ {
 		// 验证是否可放
 		if !isValid(board, row, col) {

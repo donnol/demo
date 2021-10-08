@@ -24,14 +24,17 @@ func add[T Addable](a, b T) T {
 }
 
 // https://github.com/golang/go/issues/48424
-// 根据这个提案，each函数的签名可以改为：
-// func each[T map[K]V, K comparable, V string](m T) {
+// 根据这个提案，each函数的签名可以改为以下这种方式：
 // 也就是省略了interface，直接使用了map[K]V, string等类型来做约束，非常方便
-func each[T interface{map[K]V}, K comparable, V interface{string}](m T) {
+// func each[T interface{map[K]V}, K comparable, V interface{string}](m T) {
+func each[T map[K]V, K comparable, V string|int](m T) {
     for k, v := range m {
         fmt.Println(k, v)
     }
 }
+
+// 如果把string|int从泛型类型约束里解放出来，支持下面这种写法，跟typescript不就一个样了？
+// type Sai = string | int
 
 func main() {
     fmt.Println(add(1,2))
@@ -39,6 +42,12 @@ func main() {
     fmt.Println(add("foo","bar"))
 
     m := make(map[int]string)
-    m[1]= "jd"
+    m[1] = "jd"
+    m[2] = "dd"
     each(m)
+
+    m2 := make(map[int]int)
+    m2[1] = 1
+    m2[2] = 2
+    each(m2)
 }

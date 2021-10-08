@@ -37,6 +37,12 @@ func each[T map[K]V, K comparable, V string|int](m T) {
 // type Sai = string | int
 
 func main() {
+    // why not use <> instead [] in type parameter
+    // because below code is valid before generic
+    // so, in order to keep the compiler simple.
+    a, b := 1 < 2, 2 > 3
+    fmt.Println(a, b)
+
     fmt.Println(add(1,2))
 
     fmt.Println(add("foo","bar"))

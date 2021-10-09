@@ -142,6 +142,22 @@ func (m *M[T]) Set(t T) {
 //     fmt.Println(k)
 // }
 
+type MM int
+
+// invalid AST: method must have no type parameters
+// func (m MM) Value[K int]() K {
+//     return int(m)
+// }
+
+func Value[K ~int](m MM) K {
+    // return int(m) // incompatible type: cannot use int(m) (value of type int) as K value
+    return 0
+}
+
+func Value2[K ~int](k K) MM {
+    return MM(k)
+}
+
 func main() {
     // why not use <> instead [] in type parameter
     // because below code is valid before generic

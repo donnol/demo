@@ -125,6 +125,23 @@ func each[T map[K]V, K comparable, V ~string|~int](m T) {
 // 如果把string|int从泛型类型约束里解放出来，支持下面这种写法，跟typescript不就一个样了？
 // type Sai = string | int
 
+type M[T any] struct {
+    attr T
+}
+
+func (m M[T]) Attr() T {
+    return m.attr
+}
+
+func (m *M[T]) Set(t T) {
+    m.attr = t
+}
+
+// invalid AST: method must have no type parameters
+// func (m *M[T]) Invalid[K any](k K) {
+//     fmt.Println(k)
+// }
+
 func main() {
     // why not use <> instead [] in type parameter
     // because below code is valid before generic
@@ -163,4 +180,11 @@ func main() {
     m3[1] = "hah"
     m3[2] = "bab"
     each(m3)
+
+    mi := M[int]{attr: 1}
+    fmt.Println(mi.Attr())
+    ms := M[string]{attr: "abc"}
+    fmt.Println(ms.Attr())
+    (&ms).Set("efg")
+    fmt.Println(ms.Attr())
 }

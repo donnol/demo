@@ -6,6 +6,8 @@ package main
 
 import (
     "fmt"
+
+    "./tool"
 )
 
 type Addable interface {
@@ -158,6 +160,20 @@ func Value2[K ~int](k K) MM {
     return MM(k)
 }
 
+func Pointer[K ~int](k K) *K {
+    return &k
+}
+
+func Pointer2[K ~int](k K) *int {
+    var r = int(k)
+    return &r
+}
+
+func Pointer3[K ~int](k K) *MM {
+    var r = MM(k)
+    return &r
+}
+
 func main() {
     // why not use <> instead [] in type parameter
     // because below code is valid before generic
@@ -203,4 +219,7 @@ func main() {
     fmt.Println(ms.Attr())
     (&ms).Set("efg")
     fmt.Println(ms.Attr())
+
+    mbm := tool.Map([]string{"jd", "jc"})
+    fmt.Println(mbm)
 }

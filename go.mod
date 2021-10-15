@@ -35,8 +35,7 @@ require (
 	github.com/temoto/robotstxt v1.1.1 // indirect
 	github.com/ulikunitz/xz v0.5.9 // indirect
 	golang.org/x/image v0.0.0-20201208152932-35266b937fa6 // indirect
-	golang.org/x/net v0.0.0-20210119194325-5f4716e94777 // indirect
-	golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c // indirect
-	golang.org/x/text v0.3.5
+	golang.org/x/text v0.3.7
+	golang.org/x/tools/gopls v0.7.2 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 )

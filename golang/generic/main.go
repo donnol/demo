@@ -1,93 +1,92 @@
 // From https://colobu.com/2021/03/22/try-go-generic/
-// 
+//
 // more example: https://github.com/mattn/go-generics-example
 
 package main
 
 import (
-    "fmt"
+	"fmt"
 
-    "./tool"
+	"./tool"
 )
 
 type Addable interface {
-    // 即将被type set取代
+	// 即将被type set取代
 	// type int, int8, int16, int32, int64,
 	// 	uint, uint8, uint16, uint32, uint64, uintptr,
 	// 	float32, float64, complex64, complex128,
 	// 	string
 
-    // type set
-    int | int8 | int16 | int32 | int64 | string
+	// type set
+	int | int8 | int16 | int32 | int64 | string
 }
 
 func add[T Addable](a, b T) T {
-    return a + b
+	return a + b
 }
 
 type I0 interface {
-    Name() string
+	Name() string
 }
 
 type I1 interface {
-    Age() int
+	Age() int
 }
 
 type I interface {
-    I0
-    I1
+	I0
+	I1
 }
 
 type impl struct {
-
 }
 
 func (impl *impl) Name() string {
-    return "impl"
+	return "impl"
 }
 
 func (impl *impl) Age() int {
-    return 11
+	return 11
 }
 
 var _ I = (*impl)(nil)
 
 func PrintI[T I](i T) {
-    fmt.Println(i.Name(), i.Age())
+	fmt.Println(i.Name(), i.Age())
 }
 
 type I3 interface {
-    ~int | ~string
-    I
+	~int | ~string
+	I
 }
 
 func PrintI3[T I3](i T) {
-    // 现在的type switch，还需要先把类型先转为interface{}
-    // https://github.com/golang/go/issues/45380
-    // 如果实现了这个提案，则不需要转为interface{}
-    // 直接根据类型参数T的具体类型来决定：
-    // switch type T {
-    // case ~int & I:
-    // case ~string & I:
-    // }
-    switch ii := interface{}(i).(type) {
-    case int:
-        fmt.Println(ii)
-    case string:
-        fmt.Println(ii)
-    case I:
-        fmt.Println(ii.Name(), ii.Age())
-    }
+	// 现在的type switch，还需要先把类型先转为interface{}
+	// https://github.com/golang/go/issues/45380
+	// 如果实现了这个提案，则不需要转为interface{}
+	// 直接根据类型参数T的具体类型来决定：
+	// switch type T {
+	// case ~int & I:
+	// case ~string & I:
+	// }
+	switch ii := interface{}(i).(type) {
+	case int:
+		fmt.Println(ii)
+	case string:
+		fmt.Println(ii)
+	case I:
+		fmt.Println(ii.Name(), ii.Age())
+	}
 }
 
 type impl2 int
 
 func (impl impl2) Name() string {
-    return "impl2"
+	return "impl2"
 }
 
 func (impl impl2) Age() int {
-    return 11
+	return 11
 }
 
 // 满足条件：union element `~int | ~int8 | ~int16 | ~int32 | ~int64`中的一个，并且实现了`String() string`方法
@@ -99,11 +98,11 @@ type StringableSignedInteger interface {
 type SS int
 
 func (ss SS) String() string {
-    return "ss"
+	return "ss"
 }
 
 func PrintSSI[T StringableSignedInteger](i T) {
-    fmt.Println(i)
+	fmt.Println(i)
 }
 
 // func div(a, b Addable) Addable {
@@ -114,10 +113,10 @@ func PrintSSI[T StringableSignedInteger](i T) {
 // 根据这个提案，each函数的签名可以改为以下这种方式：
 // 也就是省略了interface，直接使用了map[K]V, string等类型来做约束，非常方便
 // func each[T interface{map[K]V}, K comparable, V interface{string}](m T) {
-func each[T map[K]V, K comparable, V ~string|~int](m T) {
-    for k, v := range m {
-        fmt.Println(k, v)
-    }
+func each[T map[K]V, K comparable, V ~string | ~int](m T) {
+	for k, v := range m {
+		fmt.Println(k, v)
+	}
 }
 
 // string和~string
@@ -128,15 +127,15 @@ func each[T map[K]V, K comparable, V ~string|~int](m T) {
 // type Sai = string | int
 
 type M[T any] struct {
-    attr T
+	attr T
 }
 
 func (m M[T]) Attr() T {
-    return m.attr
+	return m.attr
 }
 
 func (m *M[T]) Set(t T) {
-    m.attr = t
+	m.attr = t
 }
 
 // invalid AST: method must have no type parameters
@@ -152,74 +151,74 @@ type MM int
 // }
 
 func Value[K ~int](m MM) K {
-    // return int(m) // incompatible type: cannot use int(m) (value of type int) as K value
-    return 0
+	// return int(m) // incompatible type: cannot use int(m) (value of type int) as K value
+	return 0
 }
 
 func Value2[K ~int](k K) MM {
-    return MM(k)
+	return MM(k)
 }
 
 func Pointer[K ~int](k K) *K {
-    return &k
+	return &k
 }
 
 func Pointer2[K ~int](k K) *int {
-    var r = int(k)
-    return &r
+	var r = int(k)
+	return &r
 }
 
 func Pointer3[K ~int](k K) *MM {
-    var r = MM(k)
-    return &r
+	var r = MM(k)
+	return &r
 }
 
 func main() {
-    // why not use <> instead [] in type parameter
-    // because below code is valid before generic
-    // so, in order to keep the compiler simple.
-    a, b := 1 < 2, 2 > 3
-    fmt.Println(a, b)
+	// why not use <> instead [] in type parameter
+	// because below code is valid before generic
+	// so, in order to keep the compiler simple.
+	a, b := 1 < 2, 2 > 3
+	fmt.Println(a, b)
 
-    fmt.Println(add(1,2))
+	fmt.Println(add(1, 2))
 
-    fmt.Println(add("foo","bar"))
+	fmt.Println(add("foo", "bar"))
 
-    impl := &impl{}
-    PrintI(impl)
+	impl := &impl{}
+	PrintI(impl)
 
-    // var i I3 // interface contains type constraints
-    // i = 1
-    // fmt.Println(i)
+	// var i I3 // interface contains type constraints
+	// i = 1
+	// fmt.Println(i)
 
-    // PrintSSI(1) // int does not satisfy StringableSignedInteger (missing method String)
-    PrintSSI(SS(1))
+	// PrintSSI(1) // int does not satisfy StringableSignedInteger (missing method String)
+	PrintSSI(SS(1))
 
-    PrintI3(impl2(1))
+	PrintI3(impl2(1))
 
-    m := make(map[int]string)
-    m[1] = "jd"
-    m[2] = "dd"
-    each(m)
+	m := make(map[int]string)
+	m[1] = "jd"
+	m[2] = "dd"
+	each(m)
 
-    m2 := make(map[int]int)
-    m2[1] = 1
-    m2[2] = 2
-    each(m2)
+	m2 := make(map[int]int)
+	m2[1] = 1
+	m2[2] = 2
+	each(m2)
 
-    type MyString string
-    m3 := make(map[int]MyString)
-    m3[1] = "hah"
-    m3[2] = "bab"
-    each(m3)
+	type MyString string
+	m3 := make(map[int]MyString)
+	m3[1] = "hah"
+	m3[2] = "bab"
+	each(m3)
 
-    mi := M[int]{attr: 1}
-    fmt.Println(mi.Attr())
-    ms := M[string]{attr: "abc"}
-    fmt.Println(ms.Attr())
-    (&ms).Set("efg")
-    fmt.Println(ms.Attr())
+	mi := M[int]{attr: 1}
+	fmt.Println(mi.Attr())
+	ms := M[string]{attr: "abc"}
+	fmt.Println(ms.Attr())
+	(&ms).Set("efg")
+	fmt.Println(ms.Attr())
 
-    mbm := tool.Map([]string{"jd", "jc"})
-    fmt.Println(mbm)
+	mbm := tool.Map([]string{"jd", "jc"})
+	fmt.Println(mbm)
 }

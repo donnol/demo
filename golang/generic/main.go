@@ -159,6 +159,12 @@ func Value2[K ~int](k K) MM {
 	return MM(k)
 }
 
+// type MMM int
+
+// func Value3[K ~int](m MM) K {
+// 	return MMM(m) // incompatible type: cannot use MMM(m) (value of type MMM) as K value
+// }
+
 func Pointer[K ~int](k K) *K {
 	return &k
 }

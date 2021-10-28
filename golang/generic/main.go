@@ -6,6 +6,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 
 	"./tool"
 )
@@ -151,8 +152,9 @@ type MM int
 // }
 
 func Value[K ~int](m MM) K {
-	// return int(m) // incompatible type: cannot use int(m) (value of type int) as K value
-	return 0
+	// 使用`go version devel go1.18-2ff1074f5a Thu Oct 28 03:44:12 2021 +0000 linux/amd64`终于不再报错了
+	return int(m) // incompatible type: cannot use int(m) (value of type int) as K value
+	// return 0
 }
 
 func Value2[K ~int](k K) MM {
@@ -227,4 +229,9 @@ func main() {
 
 	mbm := tool.Map([]string{"jd", "jc"})
 	fmt.Println(mbm)
+
+	var mm MM = 1
+	mmi := Value(mm)
+	fmt.Println(mm, reflect.TypeOf(mm))
+	fmt.Println(mmi, reflect.TypeOf(mmi))
 }

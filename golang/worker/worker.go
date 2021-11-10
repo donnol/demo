@@ -57,3 +57,24 @@ func genFib() int {
 	n := rand.Intn(100)
 	return fib(n)
 }
+
+type h struct {
+	name string
+	age *int
+}
+
+type Worker struct {
+	h h
+	a int
+	b string
+}
+
+// structslop -verbose worker.go
+type s struct{}
+
+type s1 struct {
+	x uint32
+	y uint64
+	z *s
+	t uint32
+}
